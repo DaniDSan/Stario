@@ -1,7 +1,9 @@
 package com.example.stario.network
 
+import com.squareup.moshi.Json
+
 //JSON with pair value data
 data class StarFilm (
-    val title: String
-    //TODO: implementar los datos del JSON.
+    val title: String,
+    @Json(name = "episode_id") val episodeId: Int
         )
