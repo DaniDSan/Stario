@@ -18,8 +18,7 @@ class OverviewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
