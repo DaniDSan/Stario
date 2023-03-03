@@ -1,19 +1,14 @@
 package com.example.stario
 
 class DataSource {
-    fun loadAffirmations(): List<Affirmation> {
-        return listOf<Affirmation>(
-            Affirmation(R.string.affirmation1),
-            Affirmation(R.string.affirmation2),
-            Affirmation(R.string.affirmation3),
-            Affirmation(R.string.affirmation4),
-            Affirmation(R.string.affirmation5),
-            Affirmation(R.string.affirmation6),
-            Affirmation(R.string.affirmation7),
-            Affirmation(R.string.affirmation8),
-            Affirmation(R.string.affirmation9),
-            Affirmation(R.string.affirmation10),
-            Affirmation(R.string.affirmation11)
+    fun loadAffirmations(): List<FilmImgName> {
+        return listOf<FilmImgName>(
+            FilmImgName(R.drawable.the_phantom_menace),
+            FilmImgName(R.drawable.attack_of_the_clones),
+            FilmImgName(R.drawable.revenge_of_the_sith),
+            FilmImgName(R.drawable.a_new_hope),
+            FilmImgName(R.drawable.the_empire_strikes_back),
+            FilmImgName(R.drawable.return_of_the_jedi)
         )
     }
 }
