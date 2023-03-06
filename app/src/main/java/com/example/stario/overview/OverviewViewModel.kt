@@ -1,33 +1,32 @@
 package com.example.stario.overview
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.app.Application
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewModelScope
-import com.example.stario.network.StarAPI
-import com.example.stario.network.StarFilm
+import androidx.lifecycle.viewmodel.CreationExtras
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.stario.IMainActivity
+import com.example.stario.network.Planet
+import com.example.stario.network.PlanetAPI
 import kotlinx.coroutines.launch
 
-class OverviewViewModel : ViewModel() {
-    private val _status = MutableLiveData<String>()
-    private val _films = MutableLiveData<List<StarFilm>>()
+class OverviewViewModel (
+    private val activity: IMainActivity
+        ) : ViewModel() {
 
-
-    val films: LiveData<List<StarFilm>> = _films
-    val status: LiveData<String> = _status
-
-    init {
-        getStarFilms()
-    }
-
-    //Launch the fun, if the fun works normally try will be executed, else the catch exception will be shown
-    private fun getStarFilms() {
+    fun getPlanets() {
         viewModelScope.launch {
             try {
-                _films.value = StarAPI.retrofitService.getFilms()
-                _status.value = "Succes"
+                activity.updateList(
+                    PlanetAPI.retrofitService.getPlanets().subList(0, 8)
+                )
             } catch (e: Exception) {
-                _status.value = "Fail ${e.message}"
+                e.message
+                println(e.message)
             }
         }
     }
